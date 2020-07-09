@@ -8,10 +8,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/crillab/gophersat/bf"
-	"github.com/crillab/gophersat/explain"
-	"github.com/crillab/gophersat/maxsat"
-	"github.com/crillab/gophersat/solver"
+	"github.com/DoOR-Team/gophersat/bf"
+	"github.com/DoOR-Team/gophersat/explain"
+	"github.com/DoOR-Team/gophersat/maxsat"
+	"github.com/DoOR-Team/gophersat/solver"
 )
 
 func main() {
@@ -42,6 +42,7 @@ func main() {
 		flag.PrintDefaults()
 		os.Exit(0)
 	}
+	// /Users/jpbirdy/Workspaces/go/src/github.com/DoOR-Team/door/par16/par16-1.cnf
 	path := flag.Args()[0]
 	if mus {
 		extractMUS(path)
@@ -210,6 +211,7 @@ func printDecisionResults(results chan solver.Result) {
 	var res solver.Result
 	for res = range results {
 	}
+	return
 	switch res.Status {
 	case solver.Unsat:
 		fmt.Println("s UNSATISFIABLE")

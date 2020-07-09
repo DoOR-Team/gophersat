@@ -142,7 +142,7 @@ func ParseCNF(f io.Reader) (*Problem, error) {
 	)
 	b, err := r.ReadByte()
 	for err == nil {
-		if b == 'c' { // Ignore comment
+		if b == 'c' || b == '%' { // Ignore comment
 			b, err = r.ReadByte()
 			for err == nil && b != '\n' {
 				b, err = r.ReadByte()
@@ -154,7 +154,7 @@ func ParseCNF(f io.Reader) (*Problem, error) {
 			}
 			pb.Model = make([]decLevel, pb.NbVars)
 			pb.Clauses = make([]*Clause, 0, nbClauses)
-		} else {
+		} else if b != ' ' && b != '0' {
 			lits := make([]Lit, 0, 3) // Make room for some lits to improve performance
 			for {
 				val, err := readInt(&b, r)
